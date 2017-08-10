@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         amountTextField.becomeFirstResponder()
     }
     
-    let toKinizationKey = "sandbox_tgg4p67v_6vxjwdzh2zj4q267"
+    let toKinizationKey = "REPLACE_THIS_WITH_YOUR_TOKENIZATION_KEY"
 
     @IBAction func pay(_ sender: Any) {
         // Test Values
