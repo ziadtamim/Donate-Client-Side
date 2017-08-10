@@ -64,7 +64,7 @@ class ViewController: UIViewController {
     func sendRequestPaymentToServer(nonce: String, amount: String) {
         activityIndicator.startAnimating()
         
-        let paymentURL = URL(string: "http://localhost/braintree/pay.php")!
+        let paymentURL = URL(string: "http://localhost/donate/pay.php")!
         var request = URLRequest(url: paymentURL)
         request.httpBody = "payment_method_nonce=\(nonce)&amount=\(amount)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
