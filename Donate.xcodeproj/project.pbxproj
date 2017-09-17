@@ -19,6 +19,7 @@
 		70D93B1E2814723EEF87D688 /* Pods-Donate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Donate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Donate/Pods-Donate.debug.xcconfig"; sourceTree = "<group>"; };
 		7149F2F48CC3674E7CD6FBC5 /* Pods_Donate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Donate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01F53BE447208C8F4B6F5A3 /* Pods-Donate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Donate.release.xcconfig"; path = "Pods/Target Support Files/Pods-Donate/Pods-Donate.release.xcconfig"; sourceTree = "<group>"; };
+		E77C78791F6EA8B500C51AB7 /* Donate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Donate.entitlements; sourceTree = "<group>"; };
 		E7CDF8CB1F38D1DF00D967AD /* Donate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CDF8CE1F38D1E000D967AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7CDF8D01F38D1E000D967AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 		E7CDF8CD1F38D1DF00D967AD /* Donate */ = {
 			isa = PBXGroup;
 			children = (
+				E77C78791F6EA8B500C51AB7 /* Donate.entitlements */,
 				E7CDF8CE1F38D1E000D967AD /* AppDelegate.swift */,
 				E7CDF8D01F38D1E000D967AD /* ViewController.swift */,
 				E7CDF8D21F38D1E100D967AD /* Main.storyboard */,
@@ -125,6 +127,14 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = LHTKJ9UWEU;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -181,9 +191,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Donate/Pods-Donate-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework",
+				"${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Braintree.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BraintreeDropIn.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -196,13 +211,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Donate-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -339,10 +357,11 @@
 			baseConfigurationReference = 70D93B1E2814723EEF87D688 /* Pods-Donate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Donate/Donate.entitlements;
 				DEVELOPMENT_TEAM = LHTKJ9UWEU;
 				INFOPLIST_FILE = Donate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.intensifystudio.Donate;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.intensifystudio.braintree-donate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -353,10 +372,11 @@
 			baseConfigurationReference = E01F53BE447208C8F4B6F5A3 /* Pods-Donate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Donate/Donate.entitlements;
 				DEVELOPMENT_TEAM = LHTKJ9UWEU;
 				INFOPLIST_FILE = Donate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.intensifystudio.Donate;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.intensifystudio.braintree-donate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -35,13 +35,12 @@ class ViewController: UIViewController {
         amountTextField.becomeFirstResponder()
     }
     
-    let toKinizationKey = "REPLACE_THIS_WITH_YOUR_TOKENIZATION_KEY"
+    let toKinizationKey = "sandbox_tgg4p67v_6vxjwdzh2zj4q267"
 
     @IBAction func pay(_ sender: Any) {
         // Test Values
         // Card Number: 4111111111111111
         // Expiration: 08/2018
-        
         let request =  BTDropInRequest()
         let dropIn = BTDropInController(authorization: toKinizationKey, request: request)
         { [unowned self] (controller, result, error) in

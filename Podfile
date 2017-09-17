@@ -8,4 +8,7 @@ target 'Donate' do
  
   # Pods for BraintreePayment
   pod 'BraintreeDropIn'
+  pod 'Braintree/PayPal'
+  pod 'Braintree/Venmo'
+  pod 'Braintree/Apple-Pay'
 end
